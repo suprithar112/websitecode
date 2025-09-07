@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodShare - Fighting Hunger Together</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse-heart {
+            animation: pulseHeart 2s infinite;
+        }
+        
+        @keyframes pulseHeart {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .counter-animation {
+            animation: countUp 2s ease-out;
+        }
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-red-600">❤️ FoodShare</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-red-600 font-medium transition-colors">About</a>
+                    <a href="#donate" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Donate</a>
+                    <a href="#volunteer" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Volunteer</a>
+                    <a href="#impact" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Impact</a>
+                    <a href="#contact" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-red-600">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-red-600">About</a>
+                <a href="#donate" class="block px-3 py-2 text-gray-700 hover:text-red-600">Donate</a>
+                <a href="#volunteer" class="block px-3 py-2 text-gray-700 hover:text-red-600">Volunteer</a>
+                <a href="#impact" class="block px-3 py-2 text-gray-700 hover:text-red-600">Impact</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-red-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center fade-in">
+                <div class="floating text-8xl mb-8">🍽️</div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">Fighting Hunger Together</h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Join our mission to eliminate food waste and feed those in need. Every donation makes a difference.</p>
+                <div class="space-x-4">
+                    <button onclick="scrollToSection('donate')" class="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors pulse-heart">
+                        Donate Food
+                    </button>
+                    <button onclick="scrollToSection('volunteer')" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                        Volunteer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="counter-animation">
+                    <div class="text-4xl font-bold text-red-600 mb-2">50,000+</div>
+                    <div class="text-gray-600">Meals Donated</div>
+                </div>
+                <div class="counter-animation">
+                    <div class="text-4xl font-bold text-red-600 mb-2">1,200+</div>
+                    <div class="text-gray-600">Families Helped</div>
+                </div>
+                <div class="counter-animation">
+                    <div class="text-4xl font-bold text-red-600 mb-2">500+</div>
+                    <div class="text-gray-600">Volunteers</div>
+                </div>
+                <div class="counter-animation">
+                    <div class="text-4xl font-bold text-red-600 mb-2">25</div>
+                    <div class="text-gray-600">Partner Organizations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6 text-gray-900">Our Mission</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We bridge the gap between food surplus and food insecurity, creating a sustainable solution to hunger in our communities</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center card-hover bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-5xl mb-4">🥘</div>
+                    <h3 class="text-xl font-semibold mb-4">Collect Surplus Food</h3>
+                    <p class="text-gray-600">We partner with restaurants, grocery stores, and individuals to rescue perfectly good food that would otherwise go to waste</p>
+                </div>
+                <div class="text-center card-hover bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-5xl mb-4">🚚</div>
+                    <h3 class="text-xl font-semibold mb-4">Safe Distribution</h3>
+                    <p class="text-gray-600">Our trained volunteers ensure food safety standards while distributing meals to shelters, food banks, and directly to families</p>
+                </div>
+                <div class="text-center card-hover bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-xl font-semibold mb-4">Community Impact</h3>
+                    <p class="text-gray-600">Building stronger communities by connecting those who can give with those who need, fostering compassion and solidarity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donate" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6 text-gray-900">Make a Donation</h2>
+                <p class="text-xl text-gray-600">Choose how you'd like to help fight hunger in your community</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Food Donation Form -->
+                <div class="bg-red-50 p-8 rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-6 text-red-600">🍎 Donate Food</h3>
+                    <form onsubmit="handleFoodDonation(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Donor Type</label>
+                            <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                <option value="">Select donor type</option>
+                                <option value="individual">Individual</option>
+                                <option value="restaurant">Restaurant</option>
+                                <option value="grocery">Grocery Store</option>
+                                <option value="catering">Catering Company</option>
+                                <option value="other">Other Business</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Food Type</label>
+                            <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                <option value="">Select food type</option>
+                                <option value="prepared">Prepared Meals</option>
+                                <option value="fresh">Fresh Produce</option>
+                                <option value="packaged">Packaged Foods</option>
+                                <option value="baked">Baked Goods</option>
+                                <option value="dairy">Dairy Products</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Estimated Quantity</label>
+                            <input type="text" required placeholder="e.g., 50 meals, 20 lbs of produce" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Pickup Address</label>
+                            <textarea rows="3" required placeholder="Full address for pickup" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Pickup Date</label>
+                                <input type="date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Pickup Time</label>
+                                <input type="time" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Contact Information</label>
+                            <input type="text" required placeholder="Name and phone number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold">
+                            Schedule Food Pickup
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Monetary Donation -->
+                <div class="bg-green-50 p-8 rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-6 text-green-600">💰 Monetary Donation</h3>
+                    <div class="mb-6">
+                        <p class="text-gray-600 mb-4">Your financial support helps us:</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Cover transportation costs</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Purchase emergency food supplies</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Maintain food safety equipment</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Support volunteer programs</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <button onclick="selectAmount(25)" class="donation-amount bg-white border-2 border-gray-300 p-4 rounded-lg hover:border-green-500 transition-colors">
+                            <div class="text-2xl font-bold text-green-600">$25</div>
+                            <div class="text-sm text-gray-600">Feeds 5 families</div>
+                        </button>
+                        <button onclick="selectAmount(50)" class="donation-amount bg-white border-2 border-gray-300 p-4 rounded-lg hover:border-green-500 transition-colors">
+                            <div class="text-2xl font-bold text-green-600">$50</div>
+                            <div class="text-sm text-gray-600">Feeds 10 families</div>
+                        </button>
+                        <button onclick="selectAmount(100)" class="donation-amount bg-white border-2 border-gray-300 p-4 rounded-lg hover:border-green-500 transition-colors">
+                            <div class="text-2xl font-bold text-green-600">$100</div>
+                            <div class="text-sm text-gray-600">Feeds 20 families</div>
+                        </button>
+                        <button onclick="selectAmount(250)" class="donation-amount bg-white border-2 border-gray-300 p-4 rounded-lg hover:border-green-500 transition-colors">
+                            <div class="text-2xl font-bold text-green-600">$250</div>
+                            <div class="text-sm text-gray-600">Feeds 50 families</div>
+                        </button>
+                    </div>
+                    <form onsubmit="handleMonetaryDonation(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Custom Amount</label>
+                            <input type="number" id="custom-amount" min="1" placeholder="Enter amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                            Donate Now
+                        </button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-4 text-center">This is a demo. In a real website, this would connect to a secure payment processor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section id="volunteer" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6 text-gray-900">Volunteer With Us</h2>
+                <p class="text-xl text-gray-600">Join our community of volunteers making a real difference</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Volunteer Opportunities</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="text-3xl mr-4">🚚</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Food Collection & Delivery</h4>
+                                    <p class="text-gray-600">Help collect food from donors and deliver to distribution centers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="text-3xl mr-4">📦</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Food Sorting & Packaging</h4>
+                                    <p class="text-gray-600">Sort donations and prepare meal packages for distribution</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="text-3xl mr-4">👥</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Community Outreach</h4>
+                                    <p class="text-gray-600">Help spread awareness and recruit new donors and volunteers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="text-3xl mr-4">💻</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Administrative Support</h4>
+                                    <p class="text-gray-600">Help with data entry, coordination, and communication</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-6">Volunteer Registration</h3>
+                    <form onsubmit="handleVolunteerRegistration(event)" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">First Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Last Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone Number</label>
+                            <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Areas of Interest</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2"> Food Collection & Delivery
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2"> Food Sorting & Packaging
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2"> Community Outreach
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2"> Administrative Support
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Availability</label>
+                            <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                <option value="">Select availability</option>
+                                <option value="weekdays">Weekdays</option>
+                                <option value="weekends">Weekends</option>
+                                <option value="evenings">Evenings</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold">
+                            Register as Volunteer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6 text-gray-900">Our Impact</h2>
+                <p class="text-xl text-gray-600">See how your contributions are making a difference</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-red-50 p-8 rounded-xl text-center">
+                    <div class="text-5xl mb-4">🍽️</div>
+                    <h3 class="text-2xl font-bold text-red-600 mb-2">50,000+</h3>
+                    <p class="text-gray-600">Meals distributed to families in need</p>
+                </div>
+                <div class="bg-green-50 p-8 rounded-xl text-center">
+                    <div class="text-5xl mb-4">♻️</div>
+                    <h3 class="text-2xl font-bold text-green-600 mb-2">25 Tons</h3>
+                    <p class="text-gray-600">Food waste diverted from landfills</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-xl text-center">
+                    <div class="text-5xl mb-4">🏠</div>
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">1,200+</h3>
+                    <p class="text-gray-600">Families supported monthly</p>
+                </div>
+                <div class="bg-purple-50 p-8 rounded-xl text-center">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-2xl font-bold text-purple-600 mb-2">500+</h3>
+                    <p class="text-gray-600">Active volunteers in our network</p>
+                </div>
+                <div class="bg-yellow-50 p-8 rounded-xl text-center">
+                    <div class="text-5xl mb-4">🏪</div>
+                    <h3 class="text-2xl font-bold text-yellow-600 mb-2">25</h3>
+                    <p class="text-gray-600">Partner organizations and businesses</p>
+                </div>
+                <div class="bg-indigo-50 p-8 rounded-xl text-center">
+                    <div class="text-5xl mb-4">🌍</div>
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-2">15</h3>
+                    <p class="text-gray-600">Communities served across the region</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">Get In Touch</h2>
+                <p class="text-xl text-gray-300">Have questions? Want to get involved? We'd love to hear from you!</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">📧</div>
+                            <div>
+                                <div class="font-medium">Email</div>
+                                <div class="text-gray-300">sypriya.14@gmail.com</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">📞</div>
+                            <div>
+                                <div class="font-medium">Phone</div>
+                                <div class="text-gray-300">9156894321</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">📍</div>
+                            <div>
+                                <div class="font-medium">Address</div>
+                                <div class="text-gray-300">123 Community Street, Hope City, HC 12345</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">🕒</div>
+                            <div>
+                                <div class="font-medium">Hours</div>
+                                <div class="text-gray-300">Mon-Fri: 9AM-6PM, Sat: 9AM-4PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl">
+                    <form onsubmit="handleContactForm(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Subject</label>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white">
+                                <option>General Inquiry</option>
+                                <option>Food Donation</option>
+                                <option>Volunteer Opportunity</option>
+                                <option>Partnership</option>
+                                <option>Media Request</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">❤️ FoodShare</h3>
+                    <p class="text-gray-400">Fighting hunger, reducing waste, building community.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#about" class="hover:text-white">About Us</a></li>
+                        <li><a href="#donate" class="hover:text-white">Donate</a></li>
+                        <li><a href="#volunteer" class="hover:text-white">Volunteer</a></li>
+                        <li><a href="#impact" class="hover:text-white">Our Impact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Food Safety Guidelines</a></li>
+                        <li><a href="#" class="hover:text-white">Annual Report</a></li>
+                        <li><a href="#" class="hover:text-white">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <button class="bg-blue-600 p-2 rounded hover:bg-blue-700">📘</button>
+                        <button class="bg-blue-400 p-2 rounded hover:bg-blue-500">🐦</button>
+                        <button class="bg-pink-600 p-2 rounded hover:bg-pink-700">📷</button>
+                        <button class="bg-red-600 p-2 rounded hover:bg-red-700">📺</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 FoodShare. All rights reserved. Together we can end hunger.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle food donation form
+        function handleFoodDonation(event) {
+            event.preventDefault();
+            showNotification('Thank you for your food donation! We\'ll contact you within 24 hours to arrange pickup.', 'success');
+            event.target.reset();
+        }
+
+        // Handle monetary donation
+        function handleMonetaryDonation(event) {
+            event.preventDefault();
+            const amount = document.getElementById('custom-amount').value || getSelectedAmount();
+            if (!amount) {
+                showNotification('Please select or enter a donation amount.', 'error');
+                return;
+            }
+            showNotification(`Thank you for your $${amount} donation! Your generosity will help feed families in need.\n\nNote: This is a demo. In a real website, you would be redirected to a secure payment processor.`, 'success');
+            event.target.reset();
+            clearSelectedAmounts();
+        }
+
+        // Handle volunteer registration
+        function handleVolunteerRegistration(event) {
+            event.preventDefault();
+            showNotification('Thank you for volunteering! We\'ll send you more information and training details within 48 hours.', 'success');
+            event.target.reset();
+        }
+
+        // Handle contact form
+        function handleContactForm(event) {
+            event.preventDefault();
+            showNotification('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+            event.target.reset();
+        }
+
+        // Select donation amount
+        function selectAmount(amount) {
+            clearSelectedAmounts();
+            event.target.classList.add('border-green-500', 'bg-green-50');
+            document.getElementById('custom-amount').value = amount;
+        }
+
+        // Get selected amount
+        function getSelectedAmount() {
+            const selectedButton = document.querySelector('.donation-amount.border-green-500');
+            if (selectedButton) {
+                return selectedButton.querySelector('.text-2xl').textContent.replace('$', '');
+            }
+            return null;
+        }
+
+        // Clear selected amounts
+        function clearSelectedAmounts() {
+            document.querySelectorAll('.donation-amount').forEach(button => {
+                button.classList.remove('border-green-500', 'bg-green-50');
+            });
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+            notification.className = `fixed top-20 right-4 ${bgColor} text-white px-6 py-4 rounded-lg shadow-lg z-50 fade-in max-w-md`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 6000);
+        }
+ 
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'974a809fe2617f43',t:'MTc1NjExODc1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
